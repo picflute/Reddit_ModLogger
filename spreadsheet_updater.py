@@ -195,7 +195,7 @@ def generate_modlog_range(work_range, results):
 
 def update_subreddit_log(spreadsheet_url, subreddit):
 
-    json_key = json.load(open('pythonSpreadsheetsHook-f384686377c8.json'))
+    json_key = json.load(open('gspread_connection.json'))
 
     scope = ['https://spreadsheets.google.com/feeds']
 
