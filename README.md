@@ -25,6 +25,10 @@ For the reddit connection you have to setup your own reddit app (in the reddit p
 
 [/u/Erasio]: <https://www.reddit.com/message/compose/?to=Erasio>
 
+Copy this spreadsheet: https://docs.google.com/spreadsheets/d/1pEjeoU6HJE94c78o8qTfVuoAFxnAEuepEdcw6EJNhgs/edit?usp=sharing
+
+Add all moderators that should not be counted as humans in the "Excludes" table (totals has to stay there).
+
 Go in the start.py file and enter the desired subreddit name and the spreadsheet url it should send the data to.
 
 Share the spreadsheet with the Email address your bot got from the first step.
