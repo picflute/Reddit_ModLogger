@@ -33,4 +33,4 @@ Go in the start.py file and enter the desired subreddit name and the spreadsheet
 
 Share the spreadsheet with the Email address your bot got from the first step.
 
-Done!
+Run starter.py
