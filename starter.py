@@ -11,12 +11,7 @@ warnings.simplefilter("ignore", ResourceWarning)
 
 r = reddit.init_reddit_session()
 
-today_beginning = datetime.combine(date.today(), time())
-epoch_today_beginning = int (today_beginning.strftime("%s"))
-
-time_limit = epoch_today_beginning - (86400*2)
-
-mod_actions = modlog.collect_modlog_stats(r, "leagueoflegends", time_limit=time_limit)
+mod_actions = modlog.collect_modlog_stats(r, "leagueoflegends")
 
 spreadsheet_url = ""
 subreddit = ""
