@@ -30,7 +30,9 @@ def collect_modlog_stats(r, subreddit, time_limit = None):
             if epoch_beginning_of_the_day > epoch_current_day:
                 continue
             else:
-                save_modlog(epoch_current_day, subreddit)
+                result = save_modlog(epoch_current_day, subreddit)
+                if result == 0:
+                    break
                 epoch_current_day = epoch_beginning_of_the_day
                 sleep.sleep(5)
 
@@ -47,13 +49,16 @@ def save_modlog(current_day, subreddit):
     for mod in mod_actions[current_day]:
         for action in mod_actions[current_day][mod]:
             if not action == "reasons":
-                db.insert_modlog(current_day, mod, action, mod_actions[current_day][mod][action], subreddit)
+                result = db.insert_modlog(current_day, mod, action, mod_actions[current_day][mod][action], subreddit)
+                if result == 0:
+                    return 0
 
     if "AutoModerator" in mod_actions[current_day]:
         for reason in mod_actions[current_day]["AutoModerator"]["reasons"]:
             db.insert_automod(current_day, reason, mod_actions[current_day]["AutoModerator"]["reasons"][reason], subreddit)
 
     del mod_actions[current_day]
+    return 1
 
 
 def collect_log_entry(log_entry, day):

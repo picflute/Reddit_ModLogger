@@ -11,7 +11,7 @@ import json
 warnings.simplefilter("ignore", ResourceWarning)
 
 
-_oauth_scopes = {"identity", "edit", "modposts", "modwiki", "privatemessages", "read", "report", "wikiread", "submit", "modcontributors", "modlog"}
+_oauth_scopes = {"modlog"}
 _oauth_start = 0
 _oauth_length = 3300
 
@@ -25,7 +25,11 @@ def init_reddit_session():
             global _oauth_start
             global _oauth_length
 
-            reddit_login = json.load(open('reddit_connection.config'))
+            try:
+                reddit_login = json.load(open('reddit_connection.config'))
+            except (OSError, IOError):
+                print("Couldn't open reddit_connection.config")
+                sys.exit()
 
             user_agent = reddit_login["user_agent"]
             client_id = reddit_login["client_id"]

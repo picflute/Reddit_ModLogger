@@ -194,8 +194,11 @@ def generate_modlog_range(work_range, results):
     return work_range
 
 def update_subreddit_log(spreadsheet_url, subreddit):
-
-    json_key = json.load(open('gspread_connection.json'))
+    try:
+        json_key = json.load(open('gspread_connection.json'))
+    except (OSError, IOError):
+        print("Couldn't open gpspread_connection.json")
+        sys.exit()
 
     scope = ['https://spreadsheets.google.com/feeds']
 

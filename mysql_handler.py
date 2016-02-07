@@ -9,11 +9,18 @@ from datetime import datetime, date, time
 
 warnings.simplefilter("ignore", ResourceWarning)
 
-mysql_config = json.load(open('mysql_connection.config'))
-user_name = mysql_config["user_name"]
-password = mysql_config["password"]
-host = mysql_config["host"]
-database = mysql_config["database"]
+try:
+    mysql_config = json.load(open('mysql_connection.config'))
+except (OSError, IOError):
+    print("Couldn't open mysql_connection.config")
+    sys.exit()
+try:
+    user_name = mysql_config["user_name"]
+    password = mysql_config["password"]
+    host = mysql_config["host"]
+    database = mysql_config["database"]
+except:
+    print("mysql_connection.config is not set up correctly. Make sure to use the proper format: \"key\": \"value\",")
 
 try:
     sql = mysql.connector.connect(user=user_name,
@@ -119,4 +126,22 @@ def get_count_by_action_for_timeframe(epoch_time_1, epoch_time_2, subreddit):
         epcoh_time_1 = temp_epoch_time
     statement = "SELECT moderator, action, SUM(count) FROM modlog WHERE day > {start_epoch_time} AND day < {end_epoch_time} AND subreddit = '{subreddit}' GROUP BY moderator, action;".format(start_epoch_time=int(epoch_time_1), end_epoch_time=int(epoch_time_2), subreddit=subreddit)
     return select_sql(statement)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
