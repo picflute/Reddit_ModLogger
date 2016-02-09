@@ -5,6 +5,7 @@ Creates a mod matrix and an overview while storing moderator activity on a daily
 
 * MySQL database
 * Python 3.4+
+* Time and patience to deal with /u/picflute
 
  
 # Required Modules:
